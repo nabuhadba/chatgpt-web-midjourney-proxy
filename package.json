@@ -84,7 +84,12 @@
     "vue-tsc": "^1.2.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "vue-demi"]
+    "onlyBuiltDependencies": ["esbuild", "vue-demi"],
+    "overrides": {
+      "semver@5.7.1": "5.7.2",
+      "semver@6.3.0": "6.3.1",
+      "semver@7.3.8": "7.5.4"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx,vue}": [

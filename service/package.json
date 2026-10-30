@@ -44,7 +44,12 @@
     "uuid": "^9.0.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["aws-sdk", "esbuild"]
+    "onlyBuiltDependencies": ["aws-sdk", "esbuild"],
+    "overrides": {
+      "semver@5.7.1": "5.7.2",
+      "semver@6.3.0": "6.3.1",
+      "semver@7.3.8": "7.5.4"
+    }
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.3",
