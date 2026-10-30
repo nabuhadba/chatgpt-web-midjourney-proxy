@@ -84,7 +84,10 @@
     "vue-tsc": "^1.2.0"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "vue-demi"]
+    "onlyBuiltDependencies": ["esbuild", "vue-demi"],
+    "overrides": {
+      "shell-quote": ">=1.11.0"
+    }
   },
   "lint-staged": {
     "*.{ts,tsx,vue}": [
