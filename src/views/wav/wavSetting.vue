@@ -22,7 +22,7 @@ const voiceList= computed(()=>{
 });
 const modelList= computed(()=>{
     let rz=[]; //'alloy','shimmer','echo'
-    for(let o of "gpt-4o-realtime-preview-2024-12-17,gpt-4o-mini-realtime-preview-2024-12-17,gpt-4o-realtime-preview-2024-10-01".split(/[ ,]+/ig))rz.push({label:o,value:o}) 
+    for(let o of "gpt-realtime-1.5,gpt-4o-mini-realtime-preview-2024-12-17".split(/[ ,]+/ig))rz.push({label:o,value:o}) 
     return rz;
 });
 </script>

@@ -12,16 +12,14 @@ model:[
 
  {  "label": "GPT-Image-2.5", "value": "gpt-image-2.5" }
  ,{  "label": "GPT-Image-2", "value": "gpt-image-2" }
- ,{  "label": "GPT-Image-1", "value": "gpt-image-1" }
- ,{  "label": "GPT-Image-1.5", "value": "gpt-image-1.5" }
- ,{  "label": "DALL·E 3", "value": "dall-e-3" }
+ ,{  "label": "GPT-Image-2.5-Sunburst", "value": "gpt-image-2.5-sunburst" }
+ ,{  "label": "GPT-Image-2.5-Flare", "value": "gpt-image-2.5-flare" }
  ,{  "label": "flux-kontext-pro", "value": "flux-kontext-pro" }
  ,{  "label": "flux-kontext-max", "value": "flux-kontext-max" }
  ,{  "label": "nano-banana-2", "value": "nano-banana-2" }
  ,{  "label": "nano-banana", "value": "nano-banana" }
  ,{  "label": "nano-banana-hd", "value": "nano-banana-hd" }
  ,{  "label": "gemini-3.1-flash-image-preview", "value": "gemini-3.1-flash-image-preview" }
- ,{  "label": "DALL·E 2", "value": "dall-e-2" }
  ,{  "label": "Flux", "value": "flux" }
  ,{  "label": "Flux-Dev", "value": "flux-dev" }
  ,{  "label": "Flux-Pro", "value": "flux-pro" }
@@ -89,20 +87,7 @@ const qualityOption=  computed(()=>{
 ]
 });
 const dimensionsList= computed(()=>{
-    if(f.value.model=='dall-e-2'){
-        return [{ 
-                "label": "1024px*1024px",
-                "value": "1024x1024"
-            }, {
-                "label": "512px*512px",
-                "value": "512x512"
-            }, {
-                "label": "256px*256px",
-                "value": "256x256"
-            }
-    ];
-    } 
-    if(f.value.model=='gpt-image-1'|| f.value.model.includes('gpt-image')){
+    if(f.value.model.includes('gpt-image')){
         return [{ 
                     "label": "1024px*1024px",
                     "value": "1024x1024"
@@ -161,8 +146,7 @@ watch(()=>f.value.model,(n)=>{
     f.value.size='1024x1024';
 })
 const isCanImageEdit= computed(()=>{
-    if(f.value.model=='dall-e-2') return true;
-    if(f.value.model=='gpt-image-1' ||  f.value.model.includes('gpt-image')) return true;
+    if(f.value.model.includes('gpt-image')) return true;
     if(f.value.model.indexOf('kontext')>-1) return true;
     if(f.value.model.indexOf('banana')>-1) return true;
     if(f.value.model.indexOf('-image')>-1) return true;

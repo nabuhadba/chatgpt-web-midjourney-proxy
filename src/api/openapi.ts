@@ -19,25 +19,11 @@ import { error } from "console";
 
 export const KnowledgeCutOffDate: Record<string, string> = {
   default: "2021-09",
-  "gpt-4-1106-preview": "2023-04",
-  "gpt-4-0125-preview": "2023-12",
-  "gpt-4-vision-preview": "2023-04",
-  "gpt-4-turbo-2024-04-09": "2023-12", 
-  "gpt-4o-2024-05-13": "2023-10", 
   "o1-preview-2024-09-12": "2023-10", 
-  "o1-preview": "2023-10", 
   "o1": "2023-10", 
-  "o1-2024-12-17": "2023-10", 
-  "o1-mini": "2023-10", 
   "o1-mini-2024-09-12": "2023-10", 
   "gpt-4o": "2023-10", 
   "gpt-4o-mini": "2023-10", 
-  "gpt-4o-mini-2024-07-18": "2023-10", 
-  "gpt-4o-2024-08-06": "2023-10", //chatgpt-4o-latest
-  "chatgpt-4o-latest": "2023-10", 
-  "gpt-4o-2024-11-20": "2023-10", 
-  "gpt-4-turbo": "2023-12", 
-  "gpt-4-turbo-preview": "2023-12",
   "claude-3-opus-20240229": "2023-08",
   "claude-3-sonnet-20240229": "2023-08",
   "claude-3-haiku-20240307": "2023-08",
@@ -47,12 +33,8 @@ export const KnowledgeCutOffDate: Record<string, string> = {
   "gemini-pro": "2023-12",
   "gemini-pro-vision": "2023-12",
   "gpt-4.5-preview-2025-02-27": "2024-10",
-  "gpt-4.5-preview": "2024-10",
   "deepseek-v3": "2023-12",
   "deepseek-r1": "2023-12",
-  "gpt-5": "2024-10",
-  "gpt-5-mini": "2024-06",
-  "gpt-5-nano": "2024-06",
   "gemini-pro-1.5": "2024-04"
 };
 
@@ -344,7 +326,7 @@ export const isDallImageModel =(model:string|undefined)=>{
     if( model.indexOf('ideogram')>-1 ) return true; 
     if( model.indexOf('gpt-image')>-1 ) return true;  
    
-    return ['dall-e-2' ,'dall-e-3','ideogram' ].indexOf(model)>-1
+    return ['ideogram' ].indexOf(model)>-1
       
 }
 
@@ -386,7 +368,7 @@ export const getSystemMessage = (uuid?:number )=>{
         sysTem= chatS.getGptConfig().systemMessage ;
     }
     if(  sysTem ) return sysTem;
-    let model= gptConfigStore.myData.model?gptConfigStore.myData.model: "gpt-3.5-turbo";
+    let model= gptConfigStore.myData.model?gptConfigStore.myData.model: "gpt-5.6-terra";
     let producer= 'You are ChatGPT, a large language model trained by OpenAI.'
     if(model.includes('claude')) producer=  'You are Claude, a large language model trained by Anthropic.';
     if(model.includes('gemini')) producer=  'You are Gemini, a large language model trained by Google.';
@@ -416,7 +398,7 @@ export const isClaudeModel=(model:string)=>{
 }
 export const subModel= async (opt: subModelType)=>{
     //
-    let model= opt.model?? ( gptConfigStore.myData.model?gptConfigStore.myData.model: "gpt-3.5-turbo");
+    let model= opt.model?? ( gptConfigStore.myData.model?gptConfigStore.myData.model: "gpt-5.6-terra");
     let max_tokens= gptConfigStore.myData.max_tokens;
     let temperature= 0.5;
     let top_p= 1;
@@ -432,7 +414,6 @@ export const subModel= async (opt: subModelType)=>{
         max_tokens= gStore.max_tokens;
         forbidden_stream= gStore.forbidden_stream?gStore.forbidden_stream:false
     }
-    if(model=='gpt-4-vision-preview' && max_tokens>2048) max_tokens=2048;
 
     //gptServerStore.myData.GPTS_GX
     if( gptServerStore.myData.GPTS_GX ){
@@ -697,7 +678,7 @@ export const countTokens= async ( dataSources:Chat.Chat[], input:string ,uuid:nu
     const model =myStore.model;
     const max= getModelMax(model );
     let unit= 1024;
-    if(  model=='gpt-4-1106-preview' || model=='gpt-4-vision-preview' ) unit=1000;
+    if(  model=='gpt-5.6-sol' || model=='gpt-4o' ) unit=1000;
     //gpt-4-turbo-2024-04-09
     if (model.indexOf('gpt-4-turbo')>-1 ) unit=1000;
     rz.modelTokens= `${max}k`
@@ -719,7 +700,7 @@ const getModelMax=( model:string )=>{
     model= model.toLowerCase();
     if( model.indexOf('8k')>-1  ){
         return 8;
-    }else if( model.indexOf('16k')>-1 || model=='gpt-3.5-turbo-1106' || model=='gpt-3.5-turbo-0125' ){
+    }else if( model.indexOf('16k')>-1 || model=='gpt-5.6-terra' ){
         return 16;
     }else if( model.indexOf('32k')>-1  ){
         return 32;
@@ -730,9 +711,9 @@ const getModelMax=( model:string )=>{
     }else if( model.indexOf('64k')>-1 || model.indexOf('deepseek')>-1 ){
         return 64;
     }else if( model.indexOf('128k')>-1 
-    || model=='gpt-4-1106-preview' 
-    || model=='gpt-4-0125-preview' 
-    || model=='gpt-4-vision-preview' ){
+    || model=='gpt-5.6-sol' 
+    || model=='gpt-4.1' 
+    || model=='gpt-4o' ){
         return 128; 
     }else if( model.indexOf('gpt-4')>-1  ){  
         max=8;

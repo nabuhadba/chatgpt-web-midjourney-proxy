@@ -105,7 +105,7 @@ const go= async()=>{
             apiKey:st.value.apikey,
             dangerouslyAllowAPIKeyInBrowser: true,
             baseUrl: st.value.baseUrl,
-            model: gptServerStore.myData.REALTIME_MODEL?gptServerStore.myData.REALTIME_MODEL: 'gpt-4o-realtime-preview-2024-10-01' 
+            model: gptServerStore.myData.REALTIME_MODEL?gptServerStore.myData.REALTIME_MODEL: 'gpt-realtime-1.5' 
           }
         )
     }

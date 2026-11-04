@@ -696,7 +696,7 @@ const ychat = computed(() => {
       <div class="w-full max-w-screen-xl m-auto">
         <aiGptInput
           v-if="
-            ['gpt-4-vision-preview', 'gpt-3.5-turbo-16k'].indexOf(
+            ['gpt-3.5-turbo-16k'].indexOf(
               gptConfigStore.myData.model
             ) > -1 || st.inputme
           "
