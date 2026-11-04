@@ -44,7 +44,10 @@
     "uuid": "^9.0.1"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["aws-sdk", "esbuild"]
+    "onlyBuiltDependencies": ["aws-sdk", "esbuild"],
+    "overrides": {
+      "sucrase@<3.35.0": "^3.35.1"
+    }
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.35.3",
